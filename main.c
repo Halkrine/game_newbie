@@ -14,6 +14,7 @@
 void SetConsoleView(){
     system("mode con:cols=100 lines=25");
     system("title Google Dinosaurs. Cloned By BlockMask");
+    system("chcp 65001");  // gcc 환경에서 실행 시 한글 깨짐 방지
 }
 
 // Move Cursor

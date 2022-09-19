@@ -118,7 +118,7 @@ int main()
         bool isJumping = false;
         bool isBottom = true;
         const int gravity = 3;
-
+        int jumpCount = 0;
         int dinoY = DINO_BOTTOM_Y;
         int treeX = TREE_BOTTOM_X;
 
@@ -133,21 +133,23 @@ int main()
                 break;
 
             //z키가 눌렸고, 바닥이 아닐때 점프
-            if (GetKeyDown() == 'z' && isBottom)
+            if (GetKeyDown() == 'z' && (isBottom || jumpCount < 2))
 
             {
                 isJumping = true;
                 isBottom = false;
+                jumpCount++;
             }
 
             //점프중이라면 Y를 감소, 점프가 끝났으면 Y를 증가.
-            if (isJumping)
+            if (isJumping && jumpCount < 2)
             {
                 dinoY -= gravity;
             }
             else
             {
                 dinoY += gravity;
+                jumpCount = 0;
             }
 
             //Y가 계속해서 증가하는걸 막기위해 바닥을 지정.
